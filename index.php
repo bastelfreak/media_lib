@@ -14,16 +14,19 @@ $latest_movies = get_content('media_movies');
 	<head>
 		<meta charset="utf-8">
 		<link rel='stylesheet' type='text/css' href='css/jquery.dataTables.min.css'>
+		<link rel='stylesheet' type='text/css' href='css/jquery-ui.min.css'>
 		<link rel='stylesheet' type='text/css' href='css/jquery.dataTables_themeroller.min.css'>
 		<script type='text/javascript' src='js/jquery-2.1.1.min.js'></script>
 		<script type='text/javascript' src='js/jquery.dataTables.min.js'></script>
-		<script type='text/javascript' src='js/activate_tables.js'></script>
+		<script type='text/javascript' src='js/dataTables.jqueryui.min.js'></script>
+		<script type='text/javascript' src='js/activate_tables.min.js'></script>
 		<title>Local Media Library - Overview</title>
 	</head>
 	<body>
 		<div>
 			<?php echo $latest_series;?>
 		</div>
+		<br>
 		<div>
 			<?php echo $latest_movies;?>
 		</div>
