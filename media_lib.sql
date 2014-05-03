@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `media_movies` (
   `original_title` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `poster_path` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
 	`rating` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+	`length` int(11) NOT NULL,
   PRIMARY KEY (`index`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

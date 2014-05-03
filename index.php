@@ -1,72 +1,31 @@
-<html>
-<head><title>Local Media Library - Overview</title></head>
-<body align="center">
 <?php 
-include 'database.php';
-
- mysql_connect("$dbhost", "$dbuser" , "$dbpass") or die ('Connection not possible');
- mysql_select_db("$dbname") or die ('Database did not exist');	
- ?>
- Top 5 Movies by rating
- <?php
- $select = mysql_query("SELECT * FROM media_movies ORDER BY rating DESC LIMIT 5");
- 
- if (!$select)
- {
- 	die('Ungültige Abfrage: ' . mysql_error());
- }
- 
- echo '<table border="1">';
- while ($zeile = mysql_fetch_array($select))
- {
- 	echo "<tr>";
- 	echo "<td>". $zeile['index'] . "</td>";
- 	echo "<td>". $zeile['title'] . "</td>";
- 	echo "<td>". $zeile['rating'] . "</td>";
- 	echo "<td>". $zeile['length'] . "</td>";
- 	echo "<td>". $zeile['genre'] . "</td>";
- 	echo "<td>". $zeile['status'] . "</td>";
- 	echo "</tr>";
- }
- echo "</table>";
- mysql_free_result( $select );
- ?>
- Top 5 Series by rating
-<?php
- $select = mysql_query("SELECT * FROM media_series ORDER BY rating DESC LIMIT 5");
- 
- if (!$select)
- {
- 	die('Ungültige Abfrage: ' . mysql_error());
- }
- echo '<table border="1">';
- while ($zeile = mysql_fetch_array($select))
- {
- 	echo "<tr>";
- 	echo "<td>". $zeile['index'] . "</td>";
- 	echo "<td>". $zeile['title'] . "</td>";
- 	echo "<td>". $zeile['rating'] . "</td>";
- 	echo "<td>". $zeile['length'] . "</td>";
- 	echo "<td>". $zeile['genre'] . "</td>";
- 	echo "<td>". $zeile['status'] . "</td>";
- 	echo "</tr>";
- }
- echo "</table>";
- mysql_free_result( $select );
- 
-$url = file_get_contents("http://api.themoviedb.org/3/search/movie?api_key=8eae445981f70f12cb680676146f6abc&query=titanic");
-	$json = json_decode($url, true); //This will convert it to an array
-	$movie_title = $json['results']['0']['title'];
-	$movie_year = $json['year'];
-	echo $movie_title;
- 
- if( isset($_POST['tmdb'])) 
-{
-	$url = file_get_contents("https://api.themoviedb.org/3/movie/550?api_key=8eae445981f70f12cb680676146f6abc");
-	$json = json_decode($url, true); //This will convert it to an array
-	$movie_title = $json['title'];
-	$movie_year = $json['Year'];
-	echo $movie_title;
- } 
- 
+# index.php
+# 2014-05-03 Tim 'bastelfreak' Meusel <tim@bastelfreak.de> - complete rewrite, cleanup up old code, moved it to functions.php
+error_reporting(E_ALL); 
+ini_set( 'display_errors','1');
+$rootPath = dirname(__FILE__);
+require($rootPath.'/config.php');
+require($rootPath.'/functions.php');
+$latest_series = get_content('media_series');
+$latest_movies = get_content('media_movies');
 ?>
+<!Doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel='stylesheet' type='text/css' href='css/jquery.dataTables.min.css'>
+		<link rel='stylesheet' type='text/css' href='css/jquery.dataTables_themeroller.min.css'>
+		<script type='text/javascript' src='js/jquery-2.1.1.min.js'></script>
+		<script type='text/javascript' src='js/jquery.dataTables.min.js'></script>
+		<script type='text/javascript' src='js/activate_tables.js'></script>
+		<title>Local Media Library - Overview</title>
+	</head>
+	<body>
+		<div>
+			<?php echo $latest_series;?>
+		</div>
+		<div>
+			<?php echo $latest_movies;?>
+		</div>
+	</body>
+</html>
