@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `media_movies` (
   `average_vote` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `original_title` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `poster_path` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+	`rating` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`index`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
