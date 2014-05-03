@@ -2,73 +2,57 @@
 -- version 3.4.11.1deb2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Erstellungszeit: 03. Mai 2014 um 22:06
+-- Host: 192.168.0.12:3306
+-- Erstellungszeit: 03. Mai 2014 um 23:18
 -- Server Version: 5.5.35
--- PHP-Version: 5.4.4-14+deb7u8
+-- PHP-Version: 5.4.4-14+deb7u9
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT=0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
--- Datenbank: `media_lib`
+-- Datenbank: `bastelfreak_dev_01`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `media`
+-- Tabellenstruktur füelle `media_movies`
+--
+-- Erzeugt am: 03. Mai 2014 um 21:16
 --
 
-CREATE TABLE IF NOT EXISTS `media` (
-  `index` int(11) NOT NULL AUTO_INCREMENT,
-  `title` text NOT NULL,
-  `rating` text NOT NULL,
-  `length` int(11) NOT NULL,
-  `genre` text NOT NULL,
-  `status` text NOT NULL,
-  UNIQUE KEY `index` (`index`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `media_movies`
---
-
+DROP TABLE IF EXISTS `media_movies`;
 CREATE TABLE IF NOT EXISTS `media_movies` (
   `index` int(11) NOT NULL AUTO_INCREMENT,
-  `title` text,
-  `tmdb_id` text,
+  `title` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `tmdb_id` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `release` date DEFAULT NULL,
-  `average_vote` text,
-  `original_title` text,
-  `poster_path` text,
+  `average_vote` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `original_title` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `poster_path` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`index`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=710 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `media_series`
+-- Tabellenstruktur füelle `media_series`
+--
+-- Erzeugt am: 03. Mai 2014 um 21:17
 --
 
+DROP TABLE IF EXISTS `media_series`;
 CREATE TABLE IF NOT EXISTS `media_series` (
   `index` int(11) NOT NULL AUTO_INCREMENT,
-  `title` text NOT NULL,
-  `rating` text NOT NULL,
+  `title` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `rating` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `length` int(11) NOT NULL,
-  `genre` text NOT NULL,
-  `status` text NOT NULL,
+  `genre` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `status` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`index`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
